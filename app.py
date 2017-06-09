@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, redirect
+from flask import Flask, render_template, redirect
 from sqlalchemy import create_engine, MetaData
 from flask_login import UserMixin, LoginManager, login_user, logout_user
 from flask_blogging import SQLAStorage, BloggingEngine
@@ -34,27 +34,10 @@ class User(UserMixin):
 def load_user(user_id):
     return User(user_id)
 
-index_template = """
-<!DOCTYPE html>
-<html>
-    <head> </head>
-    <body>
-        {% if current_user.is_authenticated %}
-            <a href="/logout/"> Logout </a>
-        {% else %}
-            <a href="/login/"> Login </a>
-        {% endif %}
-        &nbsp&nbsp<a href="/blog/"> Blog </a>
-        &nbsp&nbsp<a href="/blog/sitemap.xml">Sitemap</a>
-        &nbsp&nbsp<a href="/blog/feeds/all.atom.xml">ATOM</a>
-        &nbsp&nbsp<a href="/fileupload/">FileUpload</a>
-    </body>
-</html>
-"""
 
 @app.route("/")
 def index():
-    return render_template_string(index_template)
+    return render_template("index.html")
 
 @app.route("/login/")
 def login():
@@ -66,6 +49,10 @@ def login():
 def logout():
     logout_user()
     return redirect("/")
+
+@app.route("/resume")
+def view_resume():
+    return "Placeholder resume"
 
 
 if __name__ == "__main__":
