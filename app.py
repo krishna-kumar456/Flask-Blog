@@ -17,6 +17,8 @@ app.config["FILEUPLOAD_ALLOWED_EXTENSIONS"] = ["png", "jpg", "jpeg", "gif"]
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
 
+#export DATABASE_URL="postgresql://localhost/blog"
+
 # extensions
 #engine = create_engine('sqlite:////tmp/blog.db')
 #meta = MetaData()
@@ -26,7 +28,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
 
 db = SQLAlchemy(app)
 storage = SQLAStorage(db=db)
-db.create_all()
+#db.create_all()
 
 blog_engine = BloggingEngine(app, storage)
 login_manager = LoginManager(app)
