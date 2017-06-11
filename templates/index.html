@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename ='style.css')}}">
+</head>
+<body>
+    <!-- {% if current_user.is_authenticated %}
+    <a href="/logout/"> Logout </a>
+    {% else %}
+    <a href="/login/"> Login </a>
+    {% endif %}
+    &nbsp&nbsp<a href="/blog/"> Blog </a>
+
+    &nbsp&nbsp<a href="/fileupload/">FileUpload</a> -->
+
+    <!-- <div id="left">Left</div>
+    <img src="http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg"/>
+    <div id="right">Right</div> -->
+
+    <div id="container-block" class="row">
+        <div id="left-block" class="col-md-6">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <center>
+                <img style='height:300px; weight:300px; ' src="{{ url_for('static', filename='images/profilepic.png') }}" alt="..." class="img-circle img-responsive"/>
+            </center>
+        </div>
+        <div id="right-block" class="col-md-6"></div>
+    </div>
+</body>
+</html>
