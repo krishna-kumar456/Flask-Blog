@@ -23,6 +23,9 @@ h1 {
 	#right-block {
 		height: 150vh;
 		background: #EFEFEF;
+		padding-top: 100px;
+		padding-left: 100px;
+		padding-right: 100px;
 	}
 
 }
