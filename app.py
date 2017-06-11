@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect
 from sqlalchemy import create_engine, MetaData
 from flask_login import UserMixin, LoginManager, login_user, logout_user
 from flask_blogging import SQLAStorage, BloggingEngine
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret"  # for WTF-forms and login
@@ -12,14 +13,22 @@ app.config["BLOGGING_SITENAME"] = "My Site"
 app.config["FILEUPLOAD_IMG_FOLDER"] = "fileupload"
 app.config["FILEUPLOAD_PREFIX"] = "/fileupload"
 app.config["FILEUPLOAD_ALLOWED_EXTENSIONS"] = ["png", "jpg", "jpeg", "gif"]
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////tmp/blog.db"
 
 # extensions
-engine = create_engine('sqlite:////tmp/blog.db')
-meta = MetaData()
-sql_storage = SQLAStorage(engine, metadata=meta)
-blog_engine = BloggingEngine(app, sql_storage)
-login_manager = LoginManager(app)
+#engine = create_engine('sqlite:////tmp/blog.db')
+#meta = MetaData()
+#sql_storage = SQLAStorage(engine, metadata=meta)
+
 #meta.create_all(bind=engine)
+
+db = SQLAlchemy(app)
+storage = SQLAStorage(db=db)
+db.create_all()
+
+blog_engine = BloggingEngine(app, storage)
+login_manager = LoginManager(app)
 
 
 class User(UserMixin):
