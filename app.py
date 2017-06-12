@@ -12,7 +12,7 @@ app.config["SECRET_KEY"] = "secret"  # for WTF-forms and login
 app.config["BLOGGING_URL_PREFIX"] = "/blog"
 app.config["BLOGGING_DISQUS_SITENAME"] = "test"
 app.config["BLOGGING_SITEURL"] = "http://localhost:8000"
-app.config["BLOGGING_SITENAME"] = "My Site"
+app.config["BLOGGING_SITENAME"] = "Krishna Kumar"
 app.config["FILEUPLOAD_IMG_FOLDER"] = "fileupload"
 app.config["FILEUPLOAD_PREFIX"] = "/fileupload"
 app.config["FILEUPLOAD_ALLOWED_EXTENSIONS"] = ["png", "jpg", "jpeg", "gif"]
@@ -35,7 +35,7 @@ class User(UserMixin):
         self.id = user_id
 
     def get_name(self):
-        return "Paul Dirac"  # typically the user's name
+        return "Krishna Kumar"  # typically the user's name
 
 def get_quotes():
 
@@ -87,9 +87,9 @@ def index():
     quote, author = faster_quotes()
     return render_template("index.html", quote=quote, author=author)
 
-@app.route("/login/")
+@app.route("/authentication-is-hard/")
 def login():
-    user = User("testuser")
+    user = User("bloguser")
     login_user(user)
     return redirect("/blog/")
 

@@ -1,0 +1,41 @@
+body {
+	background: #EFEFEF;
+
+}
+
+.navbar {
+	visibility: hidden;
+}
+
+
+
+
+@media only screen and (min-width: 200px) {
+	#post-list {
+
+		margin-left: 0px;
+		margin-right: 0px;
+
+	}
+
+}
+
+@media only screen and (min-width: 600px) {
+
+	#nav-buttons {
+		margin-top: 30px;
+		margin-left: 430px;
+	}
+
+	#post-list {
+		margin-top: 100px;
+		margin-left: 200px;
+		margin-right: 200px;
+
+	}
+
+	#text-content {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
