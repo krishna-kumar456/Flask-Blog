@@ -91,16 +91,16 @@ def index():
 def login():
     user = User("testuser")
     login_user(user)
-    return redirect("/blog")
+    return redirect("/blog/")
 
 @app.route("/logout/")
 def logout():
     logout_user()
     return redirect("/")
 
-@app.route("/resume")
+@app.route("/resume/")
 def view_resume():
-    return "Placeholder resume"
+    return render_template("resume.html")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename ='resume_style.css')}}">
+	<script src="https://use.fontawesome.com/a9dc979047.js"></script>
+</head>
+<body>
+	<div id="nav-buttons" class="row">
+		<div class="col-md-6">
+			<div class="btn-group">
+				<a class="btn btn-primary" href="/">
+					<i class="fa fa-home" title="Home"> Home</i>
+				</a>
+				<a class="btn btn-primary" href="/blog/">
+					<i class="fa fa-rss" title="Blog"> Blog</i>
+				</a>
+				<a class="btn btn-primary" href="#">
+					<i class="fa fa-download" title="Download"> Download</i>
+				</a>
+				
+			</div>
+		</div>
+	</div>
+	<div id="resume-block" class="row">
+
+		<div class="col-md-12">
+
+			<img id="resume" src="{{ url_for('static', filename='images/resume.jpg') }}" alt="..." class="img-responsive"/>
+		</div>
+	</div>
+</body>
+</html>

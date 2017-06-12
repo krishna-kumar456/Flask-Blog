@@ -1,0 +1,43 @@
+body {
+	background: #EFEFEF;
+}
+
+#nav-buttons {
+	margin-top: 10px;
+}
+
+#resume-block {
+	padding-top: 90px;
+	margin-left: 170px;
+	margin-right: 200px;
+}
+
+@media only screen and (min-width: 400px) {
+
+	#nav-buttons {
+		margin-top: 10px;
+		margin-left: 150px;
+	}
+
+	#resume-block {
+		padding-top: 10px;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+
+}
+
+@media only screen and (min-width: 600px) {
+
+	#nav-buttons {
+		margin-top: 30px;
+		margin-left: 500px;
+	}
+
+	#resume-block {
+		padding-top: 70px;
+		margin-left: 170px;
+		margin-right: 200px;
+	}
+
+}

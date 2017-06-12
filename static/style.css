@@ -7,10 +7,7 @@ h1 {
 }
 
 
-#right-block {
-		height: 100vh;
-		background: #EFEFEF;
-	}
+
 
 @media only screen and (min-width: 200px) {
 	#left-block {
