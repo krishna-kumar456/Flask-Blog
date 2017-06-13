@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect
 from sqlalchemy import create_engine, MetaData
 from flask_login import UserMixin, LoginManager, login_user, logout_user
-from flask_blogging import SQLAStorage, BloggingEngine
+from flask_blogging import SQLAStorage, BloggingEngine, Storage
 from flask_sqlalchemy import SQLAlchemy
 import os
 import requests
@@ -76,6 +76,12 @@ def faster_quotes():
     return content_quote, content_author
 
 
+def get_post_count():
+    """ Helper function to get the post count. 
+    """
+    post_count = Storage.count_posts()
+    return post_count
+
 @login_manager.user_loader
 @blog_engine.user_loader
 def load_user(user_id):
@@ -85,6 +91,7 @@ def load_user(user_id):
 @app.route("/")
 def index():
     quote, author = faster_quotes()
+    
     return render_template("index.html", quote=quote, author=author)
 
 @app.route("/authentication-is-hard/")

@@ -1,4 +1,50 @@
-body {
-	background: #CAEBF2;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
+
+
+body {
+	margin-left: 0px;
+	margin-right: 0px;
+	background: white;
+
+}
+
+.navbar {
+	visibility: hidden;
+}
+
+
+
+
+
+
+@media only screen and (min-width: 200px) {
+	
+
+}
+
+@media only screen and (min-width: 600px) {
+
+	
+	#cover {
+		margin-left: 140px;
+		margin-right: 140px;
+	}
+
+	#post-content {
+
+		margin-left: 160px;
+		margin-right: 160px;
+
+	}
+
+	
+	#disqus {
+
+		margin-left: 160px;
+		margin-right: 160px;
+
+	}
+
+	
 }

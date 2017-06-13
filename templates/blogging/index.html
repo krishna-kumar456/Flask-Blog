@@ -20,14 +20,14 @@ Blog Posts
 
 <div class="pull-right">
     <a href="/" id="new">
-        <span class="glyphicon glyphicon-home"></span>&nbsp;Home&nbsp;
+        <span class="glyphicon glyphicon-home"></span>Home&nbsp;
     </a>
 </div>
 
 {% if meta.is_user_blogger %}
 <div class="pull-right">
     <a href="{{ url_for('blogging.editor') }}" id="new">
-        <span class="glyphicon glyphicon-plus"></span>&nbsp;New
+        &nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;New
     </a>
 </div>
 {% endif %}
@@ -40,14 +40,16 @@ Blog Posts
 
         <div class="row">
             <div class="col-md-12">
-                <img class="img-responsive" src="https://www.w3schools.com/css/trolltunga.jpg"/>
+                
+                
+                <img class="img-responsive" src="../static/fileupload/{{post.post_id}}.jpg" />
             </div>
         </div>
         <div id="text-content">
             <div class="row">
                 <div class="col-md-12">
 
-                <h2>{{ post.title }}</h2>
+                <h1>{{ post.title }}</h1>
 
 
                 </div>
@@ -56,7 +58,7 @@ Blog Posts
                 <div class="row">
                     <div class="col-md-12">
 
-                        <img class="img-responsive img-circle" style='float:left;height:50px; width:50px; ' src="{{ url_for('static', filename='images/profilepic.png') }}"/>&nbsp by <a href="{{ url_for('blogging.posts_by_author', user_id=post.user_id)}}">{{post.user_name}}</em></a>
+                        <img class="img-responsive img-circle" style='float:left;height:50px; width:50px; ' src="{{ url_for('static', filename='images/profilepic.png') }}"/> <br/>&nbsp by <a href="{{ url_for('blogging.posts_by_author', user_id=post.user_id)}}">{{post.user_name}}</em></a>
                         on {{post.post_date.strftime('%d %b, %Y')}} 
 
 
@@ -67,8 +69,9 @@ Blog Posts
 
             <div class="row">
                 <div class="col-md-12">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec mi metus. Etiam pretium libero quam, ac luctus augue porta et. Praesent sed ultricies nunc. Duis scelerisque a ipsum vel interdum. Aenean a est malesuada, condimentum tellus vitae, consequat felis. Donec sed commodo nunc. Phasellus odio ante, gravida tincidunt orci ac, mollis mattis dui. Suspendisse commodo venenatis eros in volutpat. Praesent ullamcorper leo leo, ut mollis nisl sagittis in. Nunc scelerisque, odio non dignissim pellentesque, elit quam consequat leo, ac tincidunt augue odio ut nibh. Etiam sem lacus, semper pretium viverra vitae, sollicitudin quis est. Nulla facilisi. Proin commodo metus quis nibh tristique lobortis. In tristique rhoncus nibh, in efficitur nulla ultricies sit amet.</p>
-
+                    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec mi metus. Etiam pretium libero quam, ac luctus augue porta et. Praesent sed ultricies nunc. Duis scelerisque a ipsum vel interdum. Aenean a est malesuada, condimentum tellus vitae, consequat felis. Donec sed commodo nunc. Phasellus odio ante, gravida tincidunt orci ac, mollis mattis dui. Suspendisse commodo venenatis eros in volutpat. Praesent ullamcorper leo leo, ut mollis nisl sagittis in. Nunc scelerisque, odio non dignissim pellentesque, elit quam consequat leo, ac tincidunt augue odio ut nibh. Etiam sem lacus, semper pretium viverra vitae, sollicitudin quis est. Nulla facilisi. Proin commodo metus quis nibh tristique lobortis. In tristique rhoncus nibh, in efficitur nulla ultricies sit amet.</p> -->
+                    <br/>
+                    <p id="summary">{{ post.meta.summary | join}} </p>
 
                     <!-- post tags-->
                     {% if post.tags %}

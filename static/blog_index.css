@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+
 body {
 	background: #EFEFEF;
 
@@ -18,24 +22,36 @@ body {
 
 	}
 
+	#text-content {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	#summary {
+		font-size: 20px;
+		font-family: 'Roboto';
+	}
+
 }
 
 @media only screen and (min-width: 600px) {
 
-	#nav-buttons {
-		margin-top: 30px;
-		margin-left: 430px;
-	}
+	
 
 	#post-list {
-		margin-top: 100px;
-		margin-left: 200px;
-		margin-right: 200px;
+		margin-top: 50px;
+		margin-left: 160px;
+		margin-right: 160px;
 
 	}
 
 	#text-content {
 		padding-left: 20px;
 		padding-right: 20px;
+	}
+
+	#summary {
+		font-size: 20px;
+		font-family: 'Roboto';
 	}
 }

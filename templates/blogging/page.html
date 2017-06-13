@@ -1,85 +1,106 @@
-{% extends "blogging/base.html" %}
+<!-- {% extends "blogging/base.html" %} -->
 {% block title %}
-
-Edited    {{post.title}}
+{{post.title}}
 {% endblock title %}
 
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename ='blog_page.css')}}">
-  <script src="https://use.fontawesome.com/a9dc979047.js"></script>
-</head>
-
 {% block main %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename ='blog_page.css')}}">
+<script src="https://use.fontawesome.com/a9dc979047.js"></script>
+
+
 <div class="modal fade" id="confirmModal" >
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Are you sure you want to delete this post?</h4>
-            </div>
-            <div class="modal-footer">
-                <form action="{{ url_for('blogging.delete', post_id=post.post_id) }}" method="POST">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <input type="submit" value="Yes" class="btn btn-primary" id="confirmedDelete"/>
-                </form>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Are you sure you want to delete this post?</h4>
+      </div>
+      <div class="modal-footer">
+        <form action="{{ url_for('blogging.delete', post_id=post.post_id) }}" method="POST">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <input type="submit" value="Yes" class="btn btn-primary" id="confirmedDelete"/>
+        </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 {% if meta.is_user_blogger %}
-    <div class="pull-right">
-    {% if post.editable %}
-        <a href="#" id="delete">
-            <span class="glyphicon glyphicon-trash"></span>&nbsp;Delete
-        </a>&nbsp&nbsp&nbsp&nbsp
+<div class="pull-right">
+  {% if post.editable %}
+  <a href="#" id="delete">
+    <span class="glyphicon glyphicon-trash"></span>&nbsp;Delete
+  </a>&nbsp&nbsp&nbsp&nbsp
 
-        <a href="{{ url_for('blogging.editor', post_id=post.post_id) }}" id="edit">
-            <span class="glyphicon glyphicon-edit"></span>&nbsp;Edit
-        </a>&nbsp&nbsp&nbsp&nbsp
-    {% endif %}
-        <a href="{{ url_for('blogging.editor') }}" id="new">
-            <span class="glyphicon glyphicon-plus"></span>&nbsp;New
-        </a>
-    </div>
+  <a href="{{ url_for('blogging.editor', post_id=post.post_id) }}" id="edit">
+    <span class="glyphicon glyphicon-edit"></span>&nbsp;Edit
+  </a>&nbsp&nbsp&nbsp&nbsp
+  {% endif %}
+  <a href="{{ url_for('blogging.editor') }}" id="new">
+    <span class="glyphicon glyphicon-plus"></span>&nbsp;New
+  </a>
+</div>
 {% endif %}
 
 
-  <a href="{{ url_for('blogging.page_by_id', post_id=post.post_id, slug=post.slug) }}">
-      <h1>{{ post.title }}</h1>
-  </a>
-    <p>Posted by <a href="{{ url_for('blogging.posts_by_author', user_id=post.user_id)}}"><em>{{post.user_name}}</em></a>
-on {{post.post_date.strftime('%d %b, %Y')}}</p>
-    {{post.rendered_text | safe}}
+<div id="cover" class="row">
+ <div class="col-md-12">
 
-   <br>
-  <!-- article tags-->
-  {% if post.tags %}
+
+   <img class="img-responsive" src="../../../../static/fileupload/{{post.post_id}}.jpg" />
+ </div>
+</div>
+
+
+
+
+<div id="post-content">
+
+  <h1>{{ post.title }}</h1>
+  
+  <p><img class="img-responsive img-circle" style='float:left;height:50px; width:50px; ' src="{{ url_for('static', filename='images/profilepic.png') }}"/><br/>&nbsp; Posted by <a href="{{ url_for('blogging.posts_by_author', user_id=post.user_id)}}"><em>{{post.user_name}}</em></a>
+    on {{post.post_date.strftime('%d %b, %Y')}}</p>
+    <p id="content">{{post.rendered_text | safe}}</p>
+
+
+
+    <br>
+    <!-- article tags-->
+    {% if post.tags %}
     <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
     {% for tag in post.tags %}
-        <span class="label">
-          <a href="{{ url_for('blogging.posts_by_tag', tag=tag.lower(), count=10, offset=0) }}">
-          {{ tag }}
-          </a>
-        </span>&nbsp;&nbsp;
+    <span class="label">
+      <a href="{{ url_for('blogging.posts_by_tag', tag=tag.lower(), count=10, offset=0) }}">
+        {{ tag }}
+      </a>
+    </span>&nbsp;&nbsp;
+
+    <div class="pull-right">
+      <a href="/" id="new">
+        <span class="glyphicon glyphicon-home"></span>Home&nbsp;
+      </a>
+    </div>
     {% endfor %}
     <br>
-  {% endif %}
-  <br>
-  <hr>
-{% include "blogging/disqus.html" %}
-{% endblock main %}
+    {% endif %}
+    <br>
+    <hr>
+  </div>
+  <div id="disqus">
+    {% include "blogging/disqus.html" %}
+  </div>
+  {% endblock main %}
 
-{% block extrajs %}
+  {% block extrajs %}
 
-<script>
+  <script>
     $(document).ready(function(){
-        $("#delete").click(function(){
-            $('#confirmModal').modal('show');
-        });
-        $("img").addClass("center-block").addClass("img-responsive");
+      $("#delete").click(function(){
+        $('#confirmModal').modal('show');
+      });
+      $("img").addClass("center-block").addClass("img-responsive");
     });
-</script>
-{% endblock extrajs %}
+  </script>
+  {% endblock extrajs %}
